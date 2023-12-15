@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title id="rentRoomTitle">Арендовать комнату</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<script src="main.js"></script>
+	<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function () {
+    var radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(function (radioButton) {
+        radioButton.addEventListener('change', function () {
+            updateSelectedRoomSize();
+        });
+    });
+});
+
+function updateSelectedRoomSize() {
+    var selectedRoomSizeElement = document.getElementById('selectedRoomSize');
+    var selectedRoomSize = getSelectedRoomSize();
+    selectedRoomSizeElement.innerText = selectedRoomSize;
+}
+
+function getSelectedRoomSize() {
+    var radioButtons = document.querySelectorAll('input[type="radio"]');
+    for (var i = 0; i < radioButtons.length; i++) {
+        if (radioButtons[i].checked) {
+            return radioButtons[i].parentElement.innerText.trim();
+        }
+    }
+    return 'Не выбрано';
+}
+	</script>
+	<style type="text/css">
+		body{
+			background: #333;
+		}
+		.content {
+			background: #333;
+            margin: 0px 0px 100px 0px;
+            width: auto;
+            height: auto;
+        }
+
+        .decription{
+        	margin: 0px 10px 10px 10px;
+        	display: grid;
+        	justify-content: center;
+        	align-items: center;
+        }
+
+        .decription_text {
+        	color: #FFF;
+        	font-size: 28px;
+        	margin: 0px;
+        	text-align: center;
+        	padding: 30px 0px 10px 0px;
+        }
+
+        .decription_text_ps {
+        	color: #FFF;
+        	font-size: 14px;
+        	margin: 0px;
+        	text-align: center;
+        	padding: 0px 0px 30px 0px;
+        }
+
+        .form_container {
+        	background-color: #FFF;
+        	border-radius: 32px;
+        	margin: 30px;
+        	width: auto;
+        	height: auto;
+        	padding: 0px 0px 10px 0px;
+        }
+
+
+
+        .form {
+        	margin: 30px;
+        }
+
+        .form_content{
+        	display: grid;
+        	padding: 30px 0px 10px 0px;
+        }
+
+        .form_content input {
+        	width: auto;
+        	height: 40px;
+        	font-size: 18px;
+        }
+
+        .form_content label {
+        	width: auto;
+        	height: 40px;
+        	font-size: 20px;
+        }
+
+        .dropdown {
+        	width: 300px;
+        	height: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content label {
+            display: block;
+            padding: 10px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        input[type="radio"] {
+    		display: none;
+		}
+
+
+
+		.rb_span_lb{
+			border: 4px solid #000;
+			width: auto;
+		}
+
+
+
+	</style>
+
+     <script type="text/javascript">
+    var currentLanguage = document.documentElement.lang;
+        var languageImages = {
+            "ru": "rusia.png",
+            "uk": "ukraine.png"
+        };
+
+        document.addEventListener("DOMContentLoaded", function() {
+        var languageButton = document.getElementById("languageButton");
+        updateLanguageButtonImage(languageButton, currentLanguage);
+        });
+
+        function updateLanguageButtonImage(button, language) {
+            button.src = languageImages[language];
+        }
+
+        function redirectToPage(pageUrl) {
+            window.location.href = pageUrl;
+        }
+
+        function switchLanguage() {
+            var currentLanguage = document.documentElement.lang;
+            var newLanguage = currentLanguage === "ru" ? "uk" : "ru";
+
+            document.documentElement.lang = newLanguage;
+
+            updateTexts(newLanguage);
+
+            var languageButton = document.getElementById("languageButton");
+            updateLanguageButtonImage(languageButton, newLanguage);
+    languageButton.alt = newLanguage === "ru" ? "RU" : "UA";
+        }
+
+        function updateTexts(language) {
+            var textIds = ["decription_text_id", "decription_text_ps_id", "username", "user_surname", "user_email", "tel_number", "selectedRoomSize_id", "option1", "option2", "option3", "user_date", "submitButton", "sidebar1", "sidebar2", "sidebar3", "sidebar4", "sidebar5", "sidebar6", "sidebar7", "footerText"];
+
+            var texts = {
+                "ru": {
+                    "decription_text_id": "Наши комнаты оборудованы передовым оборудованием виртуальной реальности, приглашая вас в захватывающие приключения, интенсивные игры и увлекательные тренировки.",
+                    "decription_text_ps_id": "Независимо от того, вы лишь начинающий исследователь виртуальных миров или опытный геймер",
+                    "username": "Введите своё имя",
+                    "user_surname": "Введите свою фамилию",
+                    "user_email": "Введите email",
+                    "tel_number": "Введите номер телефона",
+                    "selectedRoomSize_id": "Выберите размер комнаты",
+                    "option1": "для одного",
+                    "option2": "до 4 человек",
+                    "option3": "до 10 человек",
+                    "user_date": "Введите дату и время на когда вы желаете записатся",
+                    "submitButton": "Отправить",
+                    "sidebar1": "Главная",
+                    "sidebar2": "Vr-игры",
+                    "sidebar3": "Vr-фитнес",
+                    "sidebar4": "Сообщество",
+                    "sidebar5": "Аренда комнат",
+                    "sidebar6": "Контакты",
+                    "sidebar7": "О нас",
+                    "footerText": "© 2023 VR-World. Все права защищены."
+                },
+                "uk": {
+                    "decription_text_id": "Наші кімнати обладнані передовим обладнанням віртуальної реальності, запрошуючи вас до захоплюючих пригод, інтенсивних ігор та захоплюючих тренувань.",
+                    "decription_text_ps_id": "Незалежно від того, чи ви початківець-дослідник віртуальних світів чи досвідчений геймер",
+                    "username": "Введіть своє ім'я",
+                    "user_surname": "Введіть своє прізвище",
+                    "user_email": "Введіть електронну пошту",
+                    "tel_number": "Введіть номер телефону",
+                    "selectedRoomSize_id": "Виберіть розмір кімнати",
+                    "option1": "для одного",
+                    "option2": "до 4 осіб",
+                    "option3": "до 10 осіб",
+                    "user_date": "Введіть дату та час, на який ви бажаєте записатися",
+                    "submitButton": "Відправити",
+                    "sidebar1": "Головна",
+                    "sidebar2": "VR-ігри",
+                    "sidebar3": "VR-фітнес",
+                    "sidebar4": "Спільнота",
+                    "sidebar5": "Оренда кімнат",
+                    "sidebar6": "Контакти",
+                    "sidebar7": "Про нас",
+                    "footerText": "© 2023 VR-World. Усі права захищені."
+                }
+            };
+
+            textIds.forEach(function(textId) {
+                var element = document.getElementById(textId);
+                if (element) {
+                    element.innerText = texts[language][textId];
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+	<div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <ul>
+                <li><a id="sidebar1" href="index.html">Главная</a></li>
+                <li><a id="sidebar2" href="">Vr-игры</a></li>
+                <li><a id="sidebar3" href="">Vr-фитнес</a></li>
+                <li><a id="sidebar4" href="">Сообщество</a></li>
+                <li class="active"><a id="sidebar5" href="rent.html">Аренда комнат</a></li>
+                <li><a id="sidebar6" href="">Контакты</a></li>
+                <li><a id="sidebar7" href="">О нас</a></li>
+            </ul>
+    </div>
+
+	<header>
+        <h1> VR-World </h1>
+        <div class="switchLangButton">
+            <img class="switchLang" id="languageButton" onclick="switchLanguage()" style="cursor: pointer;">
+        </div>
+        <span class="nav_menu" onclick="openNav()">&#9776;</span>
+    </header>
+
+    <div class="content">
+    	<div class="decription">
+    		<p id="decription_text_id" class="decription_text">
+    			Наши комнаты оборудованы передовым оборудованием виртуальной реальности, приглашая вас в захватывающие приключения, интенсивные игры и увлекательные тренировки.<br><br>
+    			<p id="decription_text_ps_id" class="decription_text_ps">
+    				Независимо от того, вы лишь начинающий исследователь виртуальных миров или опытный геймер
+    			</p>
+    		</p>
+    	</div>
+    	<div class="form_container">
+    		<div class="form">
+    			<div class="form_content">
+    				<label id="username">Введите своё имя</label>				<!-- name  -->
+    				<input type="text" name="name">
+    			</div>
+    				
+    			<div class="form_content">
+    				<label id="user_surname">Введите свою фамилию</label>			<!--  surname -->
+    				<input type="text" name="surname">
+    			</div>
+    				
+    			<div class="form_content">
+    				<label id="user_email">Введите email</label>				<!-- email  -->
+    				<input type="email" name="user_email">
+    			</div>
+    				
+    			<div class="form_content">
+    				<label id="tel_number">Введите номер телефона</label>				<!-- tel  -->
+    				<input type="number" name="user_tel">
+    			</div>
+    				
+    			<div class="form_content">
+    				<label id="selectedRoomSize_id">Выберите размер комнаты</label>
+    				<div class="dropdown">
+    					<span id="selectedRoomSize" class="rb_span"><label class="rb_span_lb">▼</label></span>
+    					<div class="dropdown-content">
+    						<div class="rb">
+        						<label id="option1">
+           							<input type="radio" name="option" value="option1"> для одного
+        						</label>
+        					</div>
+        					<div class="rb">
+        						<label id="option2">
+            						<input type="radio" name="option" value="option2"> до 4 человек
+        						</label>
+        					</div>
+        					<div class="rb">
+        						<label id="option3">
+            						<input type="radio" name="option" value="option3"> до 10 человек
+        						</label>
+        					</div>
+   					 	</div>
+    				</div>
+    			</div>
+    				
+    			<div class="form_content">
+    				<label id="user_date">Введите дату и время на когда вы желаете записатся</label><br>				<!-- date  -->
+    				<input type="date" name="user_date"><br>
+    				<input type="time" name="user_time">
+    			</div>
+    				
+    			<div class="form_content">
+    				<label>			<!-- submint  -->
+    				<input id="submitButton" type="submit" value="Отправить"> 
+                </label>
+    			</div class="form_content">
+    		</div>
+    	</div>
+    </div>
+
+    <footer>
+        <p id="footerText">© 2023 VR-World. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
